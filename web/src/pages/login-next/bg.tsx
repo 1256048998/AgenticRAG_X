@@ -1,4 +1,51 @@
 import './index.less';
+
+// Floating document cards component
+const FloatingCards = () => {
+  const cards = [
+    { id: 1, position: 'top-[8%] left-[3%]', size: 'w-44', variant: 'floating-card-slow' },
+    { id: 2, position: 'top-[5%] right-[5%]', size: 'w-40', variant: 'floating-card-reverse' },
+    { id: 3, position: 'top-[25%] left-[1%]', size: 'w-36', variant: '' },
+    { id: 4, position: 'top-[30%] right-[2%]', size: 'w-48', variant: 'floating-card-slow' },
+    { id: 5, position: 'bottom-[30%] left-[2%]', size: 'w-42', variant: 'floating-card-reverse' },
+    { id: 6, position: 'bottom-[25%] right-[3%]', size: 'w-38', variant: '' },
+    { id: 7, position: 'bottom-[8%] left-[5%]', size: 'w-44', variant: 'floating-card-slow' },
+    { id: 8, position: 'bottom-[5%] right-[6%]', size: 'w-40', variant: 'floating-card-reverse' },
+  ];
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {cards.map((card) => (
+        <div
+          key={card.id}
+          className={`floating-card floating-card-${card.id} ${card.variant} ${card.position} ${card.size}`}
+        >
+          {/* Card icon */}
+          <div className="card-icon">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          
+          {/* Card content */}
+          <div className="card-title"></div>
+          <div className="card-line"></div>
+          <div className="card-line card-line-short"></div>
+          
+          {/* Tags */}
+          <div>
+            <span className="card-tag"></span>
+            <span className="card-tag" style={{ width: '30px' }}></span>
+          </div>
+        </div>
+      ))}
+      
+      {/* Gradient overlay */}
+      <div className="bg-gradient-overlay"></div>
+    </div>
+  );
+};
+
 const aspectRatio = {
   top: 240,
   middle: 466,
@@ -16,12 +63,7 @@ export const BgSvg = ({ isPaused = false }: { isPaused?: boolean }) => {
     return (
       <svg
         className="w-full h-full"
-        // style={{ aspectRatio: `1440/${aspectRatio[type]}` }}
-        // preserveAspectRatio="xMinYMid meet"
         preserveAspectRatio="none"
-        // viewBox={`${getPathBounds(path).minX} 0 ${
-        //   getPathBounds(path).width
-        // } ${height}`}
         viewBox={`0 0 1440 ${aspectRatio[type]}`}
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -64,12 +106,6 @@ export const BgSvg = ({ isPaused = false }: { isPaused?: boolean }) => {
             height="120%"
           >
             <feGaussianBlur in="SourceGraphic" stdDeviation="5.2" />
-            {/* <feBlend
-              in="blur"
-              in2="SourceGraphic"
-              mode="screen"
-              result="glow"
-            /> */}
           </filter>
           <filter
             id={`highlightFilter${id}`}
@@ -123,7 +159,11 @@ export const BgSvg = ({ isPaused = false }: { isPaused?: boolean }) => {
     );
   };
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none ">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Floating document cards */}
+      <FloatingCards />
+      
+      {/* Original SVG background */}
       <div className="absolute top-0 left-0 right-0 w-full">
         <div
           className={`w-full ml-10 ${animationClass}`}

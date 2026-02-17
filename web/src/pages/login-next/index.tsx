@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
-import Spotlight from '@/components/spotlight';
 import { Button, ButtonLoading } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -28,7 +27,6 @@ import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { BgSvg } from './bg';
 import FlipCard3D from './card';
 import './index.less';
 
@@ -131,49 +129,105 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Spotlight opcity={0.4} coverage={60} color={'rgb(128, 255, 248)'} />
-      <Spotlight
-        opcity={0.3}
-        coverage={12}
-        X={'10%'}
-        Y={'-10%'}
-        color={'rgb(128, 255, 248)'}
-      />
-      <Spotlight
-        opcity={0.3}
-        coverage={12}
-        X={'90%'}
-        Y={'-10%'}
-        color={'rgb(128, 255, 248)'}
-      />
-      <div className=" h-[inherit] relative overflow-auto">
-        <BgSvg isPaused />
-
-        <div className="absolute top-3 flex flex-col items-center mb-12 w-full text-text-primary">
-          <div className="flex items-center mb-4 w-full pl-10 pt-10 ">
-            <div className="w-12 h-12 p-2 rounded-lg flex items-center justify-center mr-3">
-              <img
-                src={'/logo.svg'}
-                alt="logo"
-                className="size-8 mr-[12] cursor-pointer"
-              />
-            </div>
-            <div className="text-xl font-bold self-center">RAGFlow</div>
+    <div className="modern-login-page">
+      {/* Clean background */}
+      <div className="modern-bg"></div>
+      
+      {/* Floating cards matching reference image */}
+      <div className="floating-cards-wrapper">
+        {/* Purple note - Call Editor */}
+        <div className="floating-card-wrapper" style={{ top: '5%', left: '8%' }}>
+          <div className="floating-card purple-note">
+            <span>Call Editor</span>
           </div>
-          <h1 className="text-[36px] font-medium  text-center mb-2">
-            {t('title')}
-          </h1>
-          {/* border border-accent-primary rounded-full */}
-          {/* <div className="mt-4 px-6 py-1 text-sm font-medium text-cyan-600  hover:bg-cyan-50 transition-colors duration-200 border-glow relative overflow-hidden">
-            {t('start')}
-          </div> */}
         </div>
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-[1050px] px-4 sm:px-6 lg:px-8">
-          {/* Logo and Header */}
+        
+        {/* Milton logo */}
+        <div className="floating-card-wrapper" style={{ top: '3%', left: '35%' }}>
+          <div className="floating-card logo-card">
+            <span className="logo-icon">M</span>
+            <span className="logo-text">Milton</span>
+          </div>
+        </div>
+        
+        {/* Yellow sticky note */}
+        <div className="floating-card-wrapper" style={{ top: '5%', right: '5%' }}>
+          <div className="floating-card yellow-sticky">
+            <div className="sticky-title">Finish Paper</div>
+            <div className="sticky-text">about women in finance</div>
+          </div>
+        </div>
+        
+        {/* Paper card - percentage */}
+        <div className="floating-card-wrapper" style={{ top: '2%', left: '20%' }}>
+          <div className="floating-card paper-card">
+            <div className="paper-title">percentage</div>
+            <div className="paper-excerpt">trading reduces men&apos;s net returns by 2.65 percentage points a year as opposed to..</div>
+            <div className="paper-tags">
+              <span className="tag empirical">● Empirical</span>
+              <span className="tag theoretical">● Theoretical</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Tag card - Overconfidence */}
+        <div className="floating-card-wrapper" style={{ top: '15%', right: '15%' }}>
+          <div className="floating-card tag-card">
+            <span className="tag-indicator"></span>
+            <span className="tag-name">Overconfidence</span>
+          </div>
+        </div>
+        
+        {/* Integrated paper */}
+        <div className="floating-card-wrapper" style={{ top: '20%', right: '2%' }}>
+          <div className="floating-card paper-card-small">
+            <div className="paper-title-small">integrated</div>
+            <div className="paper-excerpt-small">been employed to present a systematic..</div>
+          </div>
+        </div>
+        
+        {/* Blue note - Meet PhD Student */}
+        <div className="floating-card-wrapper" style={{ bottom: '10%', left: '25%' }}>
+          <div className="floating-card blue-note">
+            <span>Meet PhD Student</span>
+          </div>
+        </div>
+        
+        {/* Paper large - Barber */}
+        <div className="floating-card-wrapper" style={{ bottom: '15%', left: '2%' }}>
+          <div className="floating-card paper-large">
+            <div className="paper-header">Barber and Odean, 1998</div>
+            <div className="paper-content">One of the most famous study on overconfidence in finance. Individual investors who trade more frequently earn..</div>
+          </div>
+        </div>
+        
+        {/* Paper large - Cain */}
+        <div className="floating-card-wrapper" style={{ bottom: '20%', right: '2%' }}>
+          <div className="floating-card paper-large">
+            <div className="paper-header">Cain et al., 2015</div>
+            <div className="paper-content">Revisit the classical question of overconfidence in market entry from</div>
+          </div>
+        </div>
+        
+        {/* Paper preview */}
+        <div className="floating-card-wrapper" style={{ bottom: '5%', right: '15%' }}>
+          <div className="floating-card paper-preview">
+            <div className="preview-brand">Elsevier</div>
+            <div className="preview-title">Overconfidence as a...</div>
+            <div className="preview-author">Bill Proeger, Lukas Meys</div>
+            <div className="preview-section">
+              <div className="section-title">HIGHLIGHTS</div>
+              <div className="section-line"></div>
+              <div className="section-line short"></div>
+              <div className="section-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          {/* Login Form */}
-          <FlipCard3D isLoginPage={isLoginPage}>
+      {/* Center login form */}
+      <div className="login-center">
+        <FlipCard3D isLoginPage={isLoginPage}>
             <div className="flex flex-col items-center justify-center w-full">
               <div className="text-center mb-8">
                 <h2 className="text-xl font-semibold text-text-primary">
@@ -353,7 +407,7 @@ const Login = () => {
           </FlipCard3D>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

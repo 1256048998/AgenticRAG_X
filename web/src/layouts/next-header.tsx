@@ -147,6 +147,7 @@ export function Header() {
         activeClassName="text-bg-base bg-metallic-gradient border-b-[#00BEB4] border-b-2"
       ></Segmented>
       <div className="flex items-center gap-5 text-text-badge">
+        {/* Discord and GitHub links removed
         <a
           target="_blank"
           href="https://discord.com/invite/NjYzJD3GM3"
@@ -161,6 +162,7 @@ export function Header() {
         >
           <IconFontFill name="GitHub"></IconFontFill>
         </a>
+        */}
         <DropdownMenu>
           <DropdownMenuTrigger>
             <div className="flex items-center gap-1">
