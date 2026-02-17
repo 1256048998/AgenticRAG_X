@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: agenticrag-x
+    runtime: docker
+    plan: standard
+    dockerfilePath: ./docker/Dockerfile
+    envVars:
+      - key: RAGFLOW_IMAGE
+        value: infiniflow/ragflow:v0.24.0
+      - key: MYSQL_PASSWORD
+        value: infini_rag_flow
+      - key: REDIS_PASSWORD
+        value: infini_rag_flow
+      - key: MINIO_ROOT_USER
+        value: rag_flow
+      - key: MINIO_ROOT_PASSWORD
+        value: infini_rag_flow
+      - key: ES_PASSWORD
+        value: elastic
+      - key: SVR_WEB_HTTP_PORT
+        value: "80"
+      - key: SVR_WEB_HTTPS_PORT
+        value: "443"
+    healthCheckPath: /api/v1/health
+    buildCommand: cd docker && docker compose build
+    startCommand: cd docker && docker compose up
